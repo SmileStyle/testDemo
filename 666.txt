@@ -2,8 +2,3 @@
 
 123456
 
-<<<<<<< Updated upstream
-456789/*
-=======
-66666666
->>>>>>> Stashed changes
