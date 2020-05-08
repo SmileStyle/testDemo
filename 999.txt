@@ -1,0 +1,12 @@
+
+2020-02-12 09:11:49
+[INFO]-[Thread: http-nio-8001-exec-7]-[com.jfinal.kit.LogKit.info()]: 
+1.255:/comcategory/productlist?apitoken=1581469907479&pagesize=10&sign=670acbde1950ec3f6ac25b1a53ab79b2&lastid=16951&guid=064a502265a34d1fb53de0478b1bb41c&nonce=1581469907479&categoryid=124&cguid=6583c568434b49aca331bbfbe62e2d43
+HeaderInfo:
+x-real-ip=106.9.65.88
+dtype=A
+user-agent=Mozilla/5.0 (Linux; Android 7.0; PRA-AL00X Build/HONORPRA-AL00X; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/59.0.3071.125 Mobile Safari/537.36
+mver=20020401
+uniquekey=f1c262733b9787b988d138abb6fb8e56
+appcode=HoldMall
+screen=1812*1080
