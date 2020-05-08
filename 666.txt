@@ -1,4 +1,4 @@
-123
+﻿123
 
 123456
 
@@ -26,5 +26,17 @@ sjkdjasdkljsadkljadljaskdljsa我也想修改
 啊
 啊
 啊
+
+
+2020-05-08 10:50:52
+[INFO]-[Thread: http-bio-8001-exec-1151]-[com.jfinal.kit.LogKit.info()]: 
+0.039:/user/getubrecord?apitoken=1588906254950&pagesize=10&sign=43c39c8a679c149083760d2064f76ef3&guid=d71913f08a154399a52f21a6d072dbd2&nonce=1588906255525
+HeaderInfo:
+user-agent=Mozilla/5.0 (Linux; Android 6.0.1; BLA-AL00 Build/V417IR; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/52.0.2743.100 Mobile Safari/537.36
+mver=20010301
+uniquekey=cf6cd85c5c4b4934445b7ad03b6b5ad0
+dtype=A
+screen=1280*800
+appcode=CorpMall
 
 
