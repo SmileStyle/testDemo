@@ -1,4 +1,4 @@
-﻿123
+123
 
 123456
 
@@ -18,6 +18,8 @@
 shhdshshdshdshdhs
 llllll;;;asdasdasd
 
+2020-05-08 10:50:01
+[INFO]-[Thread: DefaultQuartzScheduler_Worker-7]-[com.jfinal.kit.LogKit.info()]: 扫描任务已经启动，正在扫描中...
 sjkdjasdkljsadkljadljaskdljsa我也想修改
 嗯嗯嗯嗯嗯呃
 你说是不是
@@ -38,5 +40,3 @@ uniquekey=cf6cd85c5c4b4934445b7ad03b6b5ad0
 dtype=A
 screen=1280*800
 appcode=CorpMall
-
-
