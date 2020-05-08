@@ -1,0 +1,11 @@
+2020-05-07 15:46:43
+[INFO]-[Thread: http-nio-8001-exec-7]-[com.jfinal.kit.LogKit.info()]: 用户:刘香源自营旗舰店(27.184.196.162) 发出请求:/companyordermanage?_=1588837604227
+
+2020-05-07 15:46:44
+[INFO]-[Thread: http-nio-8001-exec-4]-[com.jfinal.kit.LogKit.info()]: 用户:抢购管理员(119.248.17.234) 发出请求:/allproductmanage?keywords=健康100&fuzzyKeywords=&barcode=&cstock=999&realStock=999&sortway=&apc.companyid=&apc.companyname=&ap.sourceid=&ap.sourcecompanyname=&type.producttype=&type.producttypename=&pstate=999&shoptype=999&minprofit=&maxprofit=&minprofitrate=&maxprofitrate=&companyid=
+
+2020-05-07 15:46:46
+[INFO]-[Thread: http-nio-8001-exec-25]-[com.jfinal.kit.LogKit.info()]: 用户:天润乳品(106.114.170.145) 发出请求:/productmanage/showproductskuinfo?productid=49796&producttype=11743&_=1588837637985
+
+2020-05-07 15:46:47
+[INFO]-[Thread: http-nio-8001-exec-13]-[com.jfinal.kit.LogKit.info()]: 用户:刘香源自营旗舰店(27.184.196.162) 发出请求:/sourcecompanywelfareorder?_=1588837608266
