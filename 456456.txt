@@ -1,0 +1,6 @@
+	public void refundmoneytest(){
+		String ordernumber=getPara("ordernumber");
+		String refund_fee=getPara("refund_fee");
+		String r=AlipayService.refund(ordernumber, "", OrderService.createOrderNumspeed(), refund_fee+"");
+		renderAppMsg(r);
+	}
