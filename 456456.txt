@@ -10,3 +10,10 @@ ssssssssssssssssssssssssss
 		String r=AlipayService.refund(ordernumber, "", OrderService.createOrderNumspeed(), refund_fee+"");
 		renderAppMsg(r);
 	}
+	
+	
+		public void asynExtratraffic(){
+		String ordernumber = getPara("ordernumber");
+		OrderService.asynExtratraffic(ordernumber);
+		renderAppMsg("ok");
+	}
