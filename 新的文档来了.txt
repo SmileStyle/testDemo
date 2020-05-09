@@ -1,8 +1,16 @@
-<<<<<<< HEAD
-���زֿ�Ҳ����һ��
-=======
-萨达撒大所多撒多所�?
-当你的sourcetree合并代码冲突的时候，你是不能提交代码的�?
-这时sourcetree会显示合并冲突，打开你冲突的文件，会发现里面多了类似这样的东西�?
->>>>>>> 48c41b53d6af5c6943e822c04da3ba76ef30718f
-���زֿ�Ҳ����һ��
+
+	/**
+	 * δ֪
+	 */
+	public void refundOfferExpress(){
+		Integer brfid=getParaToInt("brfid",-1);
+		String expressCode = getPara("expressCode");
+		String trackingNum = getPara("trackingNum");
+		String result = YanXuanService.refundOfferExpress(brfid,expressCode,trackingNum);
+		if(StrKit.isBlank(result)){
+			renderAppMsg("�ύ�ɹ�");
+		}else{
+			renderAppError("�ύʧ��");
+		}
+		
+	}
