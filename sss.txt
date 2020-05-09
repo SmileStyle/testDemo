@@ -2,3 +2,37 @@ public void returnstock(){
 		OrderService.endtask(getPara("ordernumber"));
 		renderAppMsg("ok");
 	}
+	
+	public static void endtask(String ordernum){
+    	Integer isOpenReturnStock = ConfigUtil.getIntegerValue("ISOPENRETURNSTOCK", 0);
+    	if(isOpenReturnStock==0){
+    		return;
+    	}
+    	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    	Record rec=Db.findFirst("SELECT issuesign,signtimebegin,signtimeend,createtime from b_order WHERE ordernumber=?", ordernum);
+    	if(rec.getInt("issuesign")==1){
+    		Db.update("UPDATE b_order SET issuesign=2 WHERE ordernumber=? ", ordernum);
+        	List<Record> list=Db.find("SELECT id,productid,allattribute,number,ordernum,skuid FROM b_order_product WHERE ordernum=?",ordernum);
+        	for(Record record:list){
+        		Record onerecord=Db.findFirst("SELECT id FROM b_product_attribute WHERE state=1 and productid=? AND allattribute=?", record.getInt("productid"),record.getStr("allattribute"));
+        		if(onerecord!=null){
+        			Integer flag=querylimitedproduct(record);
+        			if(flag==0){
+        				LogKit.info(formatter.format(rec.getDate("createtime"))+"下单=="+ordernum+"=="+formatter.format(new Date())+"自动释放库存失败");
+        			}else{
+        				LogKit.info(formatter.format(rec.getDate("createtime"))+"下单=="+ordernum+"=="+formatter.format(new Date())+"自动释放库存成功");
+        				Db.update("UPDATE b_product_attribute SET stock=stock+? WHERE productid=? AND allattribute=? and state=1",record.getInt("number"),record.getInt("productid"),record.getStr("allattribute"));
+        			}
+        			
+        		}
+        	}
+        	LogKit.info("这个任务已经结束"+ordernum);
+    	} else if ( rec.getInt("issuesign") == 2) {//(有效期结束，有效期内没有付款)
+    		//代付的这种情况，一个人唤起支付，没支付，另外一个人也唤起支付的可能性
+			Db.update("UPDATE b_order SET payerguid = NULL WHERE ordernumber = ? LIMIT 1", ordernum);
+		} else{
+    		LogKit.info("任务执行成功，不用在执行");
+    	}
+    	
+    	
+    }
