@@ -1,8 +1,16 @@
-<<<<<<< HEAD
-���زֿ�Ҳ����һ��
-=======
-萨达撒大所多撒多所�?
-当你的sourcetree合并代码冲突的时候，你是不能提交代码的�?
-这时sourcetree会显示合并冲突，打开你冲突的文件，会发现里面多了类似这样的东西�?
->>>>>>> 48c41b53d6af5c6943e822c04da3ba76ef30718f
-���زֿ�Ҳ����һ��
+	public void payResult() {
+		String guid = getPara("guid");
+		String ordernumber = getPara("ordernumber");
+		if (StrKit.isBlank(guid)) {
+			renderAppError(HighMallConstant.PLEASELOGIN_MSG, HighMallConstant.PLEASELOGIN_CODE);
+			return;
+		}
+		Record result = OrderService.payResult(guid, ordernumber);
+		renderAppJson(result);
+	}
+	
+	public void asynExtratraffic(){
+		String ordernumber = getPara("ordernumber");
+		OrderService.asynExtratraffic(ordernumber);
+		renderAppMsg("ok");
+	}
