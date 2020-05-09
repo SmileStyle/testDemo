@@ -1,0 +1,4 @@
+public void returnstock(){
+		OrderService.endtask(getPara("ordernumber"));
+		renderAppMsg("ok");
+	}
