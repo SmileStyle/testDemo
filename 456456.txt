@@ -10,3 +10,71 @@ ssssssssssssssssssssssssss
 		String r=AlipayService.refund(ordernumber, "", OrderService.createOrderNumspeed(), refund_fee+"");
 		renderAppMsg(r);
 	}
+
+
+
+
+		renderAppMsg("取消成功");
+	}
+	
+	/***
+	 * 
+	 * 
+	 * 获取微信的支付sign
+	 */
+	public void getwxgzhpaysign(){
+		try {
+			String guid = getPara("guid");
+			Integer vercode = getRequest().getIntHeader("VERCODE");//临时用一下
+			String AppCode = getRequest().getHeader("AppCode");
+			String ordernum = getPara("ordernum");
+			String sendip=getIpAddr(getRequest());
+			OrderService.updateisHighMallFromAppCode(ordernum,AppCode);
+			Integer sign_orderstate=OrderService.getsignorderstate(ordernum, guid);
+			if(sign_orderstate==-1){
+				renderAppError("订单已支付请返回");
+				return ;
+			}else if(sign_orderstate==-2){
+				renderAppError("当前有人正在支付，请稍后");
+				return ;
+			}
+			if(OrderService.checkProductIsUse(ordernum)){
+				OrderService.setpaylock(ordernum);
+				Kv map = Kv.by("ordernum", ordernum).set("guid", guid).set("sendip", sendip);
+				Integer flag=0;
+				synchronized(OrderController.class) { 
+					flag=OrderService.oversell(ordernum);
+				}
+				if(flag==1){//订单处于没有调用sign或者sign调用已经过期了
+					Map<String, String>  sign = OrderService.getwxgzhpaysign(map,vercode);
+					 if(sign.isEmpty()){
+						 OrderService.endtask(ordernum);
+						 renderAppError("该订单已失效");
+					 }else{
+						 OrderService.creatonetask(ordernum);
+						 //设置付款人的guid
+						 OrderService.setPayerGuid(ordernum, guid);
+						 renderAppJson(sign);
+					 }
+				}else if(flag==2){//订单调用了sign，但还没有过期
+					 Map<String, String>  sign = OrderService.getwxgzhpaysign(map,vercode);
+					 if(sign.isEmpty()){
+						 renderAppError("该订单已失效");
+					 }else{
+						 //设置付款人的guid
+						 OrderService.setPayerGuid(ordernum, guid);
+						 renderAppJson(sign);
+					 }
+				}else{//库存不足或者含有失效的商品
+					LogKit.error("含有失效商品或者库存不足");
+					renderAppError("订单中商品库存不足，请重新下单");
+				}
+			}else{
+				renderAppError("订单中商品库存不足，请重新下单");
+			}
+			
+		} catch (Exception e) {
+			renderAppError("获取支付sign失败");
+			throw new HighMallException("获取支付sign出错", "获取支付sign出错", e);
+		}
+	}
