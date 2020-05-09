@@ -1,4 +1,5 @@
 
+
 	/**
 	 * δ֪
 	 */
@@ -14,3 +15,21 @@
 		}
 		
 	}
+
+	public void payResult() {
+		String guid = getPara("guid");
+		String ordernumber = getPara("ordernumber");
+		if (StrKit.isBlank(guid)) {
+			renderAppError(HighMallConstant.PLEASELOGIN_MSG, HighMallConstant.PLEASELOGIN_CODE);
+			return;
+		}
+		Record result = OrderService.payResult(guid, ordernumber);
+		renderAppJson(result);
+	}
+	
+	public void asynExtratraffic(){
+		String ordernumber = getPara("ordernumber");
+		OrderService.asynExtratraffic(ordernumber);
+		renderAppMsg("ok");
+	}
+
