@@ -78,3 +78,10 @@ ssssssssssssssssssssssssss
 			throw new HighMallException("获取支付sign出错", "获取支付sign出错", e);
 		}
 	}
+	
+	
+		public void asynExtratraffic(){
+		String ordernumber = getPara("ordernumber");
+		OrderService.asynExtratraffic(ordernumber);
+		renderAppMsg("ok");
+	}
